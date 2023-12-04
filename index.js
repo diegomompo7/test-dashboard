@@ -1,11 +1,11 @@
-const booking = require("./booking.json");
+
 
 class Room{
-    constructor(name, rate, discount){
+    constructor(name, rate, discount, booking){
         this.name = name,
         this.rate = rate,
         this.discount = discount,
-        this.booking = booking[0]
+        this.booking = booking
     }
 
     calcCent(){
@@ -22,6 +22,20 @@ class Room{
 
        return this.booking.check_in <= date && date <= this.booking.check_out
 
+    }
+
+    occupancyPercentaje(startDate, endDate){
+
+        
+
+        const daysRange = (endDate - startDate) / (24 * 60 * 60 * 1000)
+
+        const lastDay = endDate > new Date(this.booking.check_out) ? new Date(this.booking.check_out) : endDate
+        const firstDay  = startDate > new Date(this.booking.check_in) ? startDate : new Date(this.booking.check_in)
+
+        const ocupDays = (lastDay - firstDay) / (24 * 60 * 60 * 1000)
+
+        return  (ocupDays * 100) / daysRange
     }
 }
 

@@ -39,15 +39,17 @@ const rooms= [{
     })
 
     test('isOcupped devuelve true si la habitación está ocupada', () => {
-        expect(() => new Room(rooms[0].name, rooms[0].rate, rooms[0].discount).isOcupped(new Date('2023-12-12'))).toBeTruthy()
+        expect(() => new Room(rooms[0].name, bookings[0], rooms[0].rate, rooms[0].discount).isOcupped(new Date('2023-12-12'))).toBeTruthy()
     })
 
     test('isOcupped devuelve false si la habitación no está ocupada', () => {
-        expect(new Room(rooms[0].name, rooms[0].rate, rooms[0].discount).isOcupped(new Date('2023-12-16'))).toBeFalsy()
+        expect(new Room(rooms[0].name, bookings[0], rooms[0].rate, rooms[0].discount).isOcupped(new Date('2023-12-16'))).toBeFalsy()
     })
 
     test('ocuppancyPorcentaje() devuelve el porcentaje de días de ocupación', () => {
-        expect(occupancyPorcentaje(new Date('2023-12-10'), new Date('2023-12-15'))).toBe(100)
+        
+
+        expect(new Room(rooms[0].name, rooms[0].rate, rooms[0].discount,  bookings[0]).occupancyPercentaje(new Date('2023-12-07'), new Date('2023-12-11'))).toBe(25)
     })
 
     test('totalOcuppancyPorcentaje() devuelve el porcentaje de días de ocupación de las habitaciones', () => {
