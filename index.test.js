@@ -1,4 +1,5 @@
-const {Room, Booking} = require("./index");
+import { Room } from "./rooms"
+import { Booking } from "./bookings"
 
 const rooms= [{
     "name": "Deluxe-Room - 215",
