@@ -5,21 +5,21 @@ export interface BookingInterface {
 
     name: string
     email:string
-    check_in:Date
-    check_out:Date
+    check_in:string
+    check_out:string
     discount:number
-    room: RoomInterface
+    room: RoomInterface | null;
 
 }
 
 export class Booking{
     name: string
     email:string
-    check_in:Date
-    check_out:Date
+    check_in:string
+    check_out:string
     discount:number
     room: RoomInterface
-    constructor(name: string, email:string, check_in:Date, check_out:Date, discount:number, room:RoomInterface){
+    constructor(name: string, email:string, check_in:string, check_out:string, discount:number, room:RoomInterface){
         this.name = name,
         this.email = email,
         this.check_in = check_in,
