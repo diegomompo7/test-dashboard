@@ -19,6 +19,9 @@ class Booking {
         }
     }
     getFee() {
+        if (!this.room) {
+            throw new Error("Booking must have a room assigned for calculating the fee.");
+        }
         const onCent = this.room.rate * 100;
         const discountRoom = onCent - (onCent * (this.room.discount / 100));
         const discountFinal = discountRoom - (discountRoom * (this.discount / 100));
@@ -26,4 +29,4 @@ class Booking {
     }
 }
 exports.Booking = Booking;
-module.exports = Booking;
+exports.default = Booking;

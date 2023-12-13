@@ -18,8 +18,8 @@ export class Booking{
     check_in:string
     check_out:string
     discount:number
-    room: RoomInterface
-    constructor(name: string, email:string, check_in:string, check_out:string, discount:number, room:RoomInterface){
+    room: RoomInterface | null
+    constructor(name: string, email:string, check_in:string, check_out:string, discount:number, room:RoomInterface | null){
         this.name = name,
         this.email = email,
         this.check_in = check_in,
@@ -37,16 +37,20 @@ export class Booking{
     }
 
     getFee():number{
+        
+        if (!this.room) {
+            throw new Error("Booking must have a room assigned for calculating the fee.");
+        }
 
-        const onCent = this.room.rate * 100
+        const onCent: number = this.room.rate * 100
 
-        const discountRoom = onCent - (onCent * (this.room.discount / 100))
+        const discountRoom: number = onCent - (onCent * (this.room.discount / 100))
 
-        const discountFinal = discountRoom - (discountRoom * (this.discount / 100))
+        const discountFinal: number = discountRoom - (discountRoom * (this.discount / 100))
 
         return discountFinal
 
     }
 }
 
-module.exports =  Booking;
+export default Booking;
